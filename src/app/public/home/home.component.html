@@ -1,0 +1,34 @@
+<!-- Hero Section -->
+<div class="hero-section-wrapping">
+    <mat-grid-list cols="6" rowHeight="580px">
+        <mat-grid-tile></mat-grid-tile>
+        <mat-grid-tile [colspan]="4">
+            <div class="hero-text">
+                <h1 class="hero-heading">
+                    Let us take care of your home
+                    <span class="hero-subheading">So you can enjoy doing the things you love</span>
+                </h1>
+                <div class="service-dropdown-container">
+                    <div class="service-dropdown-row">
+                        <button [matMenuTriggerFor]="menu" mat-stroked-button class="service-button">
+                            Which service are you looking for?
+                            <mat-icon>expand_more</mat-icon>
+                        </button>
+                        <button mat-raised-button color="primary">Let's Connect</button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item>
+                                <mat-icon>bed</mat-icon>
+                                <span>Home Cleaning</span>
+                            </button>
+                            <button mat-menu-item>
+                                <mat-icon>park</mat-icon>
+                                <span>Outdoor Cleaning</span>
+                            </button>
+                        </mat-menu>
+                    </div>
+                </div>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile></mat-grid-tile>
+    </mat-grid-list>
+</div>

@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.white-toolbar {
+    background: white !important;
+    color: rgb(61, 57, 53) !important;
+    font-weight: 600 !important;
+    border-bottom: 2px solid rgb(237, 236, 234) !important;
+ }
+/* 
+
+.hero-section-wrapping{
+    background-color: rgb(190, 190, 190);
+    background-image: url('/assets/img/hero-bg.jpg');
+    background-size: cover;
+  } */
