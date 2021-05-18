@@ -10,6 +10,7 @@ import {SharedModule} from './_shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from './material/material.module';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {MaterialModule} from './material/material.module';
   imports: [
     BrowserModule,
     SharedModule,
+    HttpClientModule,
     CoreModule,
     RouterModule.forRoot(AppRoutingModule, { useHash: false }),
     BrowserAnimationsModule,

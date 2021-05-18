@@ -103,3 +103,30 @@ ngb-carousel .wrapper {
   margin-right: 10px;
   font-size: 0.9rem;
 }
+
+.services-card{
+  border: 1px solid rgb(237, 236, 234);
+  box-shadow: rgb(237 236 234) 0px 1px 5px 0px;
+  text-align: center;
+  cursor: pointer;
+}
+.services-card:hover{
+  opacity: 0.8;
+}
+
+.card-title{
+  color: #3f51b5;
+}
+.card-title span{
+  font-weight: 100;
+  color: #666;
+}
+
+.section-heading{
+  color: rgb(61, 57, 53);
+  overflow: hidden;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: normal;
+  margin-top: 80px;
+}

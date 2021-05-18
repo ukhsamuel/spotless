@@ -1,0 +1,201 @@
+/* Styles for tab labels */
+.mat-tab-label {
+    min-width: 25px !important;
+    padding: 5px;
+    background-color: transparent;
+    color: #3f51b5;
+    border-width: 1px;
+    border-style: solid;
+    opacity: 1 !important;
+    border-color: #3f51b5;
+}
+
+/* Styles for the active tab label */
+.mat-tab-label.mat-tab-label-active {
+    cursor: initial;
+    min-height: 40px;
+    background: #3f51b5 !important;
+    color: white !important;
+    box-shadow: rgb(0 0 0 / 20%) 1px 1px 2px inset !important;
+}
+
+/* Styles for the ink bar */
+.mat-ink-bar {
+    background-color: green;
+}
+
+.summary-section{
+    text-align: left  !important;
+    height: 380px;
+}
+
+.promise-section{
+    height: 100px;
+    margin-top: 10px;
+    text-align: left  !important;
+}
+
+.summ-txt-1{
+    color: rgb(117, 120, 123);
+    margin: 0px;
+    font-size: 0.8rem;
+    margin-bottom: 0px !important;
+}
+
+.summ-txt-2{
+    color: rgb(61, 57, 53);
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0px;
+}
+
+.mat-tab-label-content {
+    border: none !important;
+}
+
+.book-form-container{
+    inset: 20px 10px 20px 20px;
+    border: 1px solid rgb(237, 236, 234);
+    border-radius: 3px;
+    padding: 30px 50px 50px;
+    width: 80%;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center;
+
+    /* min-height: 300px; */
+}
+
+.worker-card-section{
+    text-align: center;
+}
+
+.btn-submit{
+    margin-top: 10px;
+    width: 100%;
+}
+.title-1{
+    font-weight: bold;
+    color: #3f51b5;
+}
+.worker-card img {
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+}
+
+
+.task-container{
+    min-height: 600px;
+}
+.mat-tab-nav-bar, .mat-tab-header{
+    border-bottom: none !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+ 
+.service-icon-container{
+    border: solid rgb(237, 236, 234) 4px;
+    padding: 15px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+ }
+
+.service-icon{
+    color: rgb(237, 236, 234);
+    font-size: 90px;
+    height: unset !important;
+    width: unset !important;
+}
+
+.selected-service .service-icon-container{
+    border-color: #3f51b5;
+}
+
+
+.service p{
+    font-size: 1rem;
+    margin-bottom: 0px;
+    font-weight: 300;
+    margin-top: 10px;
+    color: rgb(117, 120, 123);
+    text-align: center;
+}
+
+.select-border{
+    border: solid rgb(89, 160, 238)  1px;
+    padding-left: 0.2em;
+    border-radius: 4px;
+}
+
+.selected-service .service-icon{
+    color: #3f51b5;
+}
+.selected-service p{
+    color: #3f51b5;
+}
+.select-container h4{
+    text-align: left;
+    margin-bottom: 5px;
+    font-size: 0.8rem;
+}
+
+.mat-form-field-wrapper{
+    padding-bottom: 0.2em !important;
+}
+
+.select-border .mat-form-field-underline{
+    background-color: rgba(199, 5, 5, 0) !important;
+}
+
+
+.select-border .mat-form-field-infix{
+    border-top: 0.2em solid transparent !important;
+}
+
+.mat-slider.mat-slider-horizontal .mat-slider-wrapper {
+    top: 18px;
+  }
+  .mat-slider.mat-slider-horizontal .mat-slider-track-wrapper {
+    height: 12px;
+    border-radius: 10px
+  }
+  .mat-slider.mat-slider-horizontal .mat-slider-track-background,
+  .mat-slider.mat-slider-horizontal .mat-slider-track-fill {
+    height: 100%;
+  }
+  .mat-slider.mat-slider-horizontal .mat-slider-track-fill {
+    background-color: #3f51b5;
+  }
+  .mat-accent .mat-slider-thumb {
+    height: 30px;
+    width: 30px;
+    background-color: white;
+    border: solid 2px gray;
+    bottom: -20px;
+    right: -20px;
+  }
+  .mat-slider-min-value:not(.mat-slider-thumb-label-showing) .mat-slider-thumb {
+    background-color: white;
+  }
+
+  .mat-slider-horizontal {
+      min-width: 600px !important;
+  }
+
+
+  .tab-wrapper{
+    min-width: 800px !important;
+  }
+
+  .form-control {
+    padding:10px;
+    margin:10px 0; 
+    width:100%;
+  }
+
+  /* .form-control {
+    border:0; 
+    border-bottom:1px solid #eee; 
+  } */

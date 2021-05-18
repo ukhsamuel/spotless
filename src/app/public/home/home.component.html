@@ -14,13 +14,13 @@
                             Which service are you looking for?
                             <mat-icon>expand_more</mat-icon>
                         </button>
-                        <button mat-raised-button color="primary">Let's Connect</button>
+                        <button routerLink="/book" mat-raised-button color="primary">Let's Connect</button>
                         <mat-menu #menu="matMenu">
-                            <button mat-menu-item>
+                            <button (click)="gotoService('indoor')" mat-menu-item>
                                 <mat-icon>bed</mat-icon>
                                 <span>Home Cleaning</span>
                             </button>
-                            <button mat-menu-item>
+                            <button (click)="gotoService('outdoor')" mat-menu-item>
                                 <mat-icon>park</mat-icon>
                                 <span>Outdoor Cleaning</span>
                             </button>
@@ -31,4 +31,46 @@
         </mat-grid-tile>
         <mat-grid-tile></mat-grid-tile>
     </mat-grid-list>
+</div>
+<div class="services-section-wrapping">
+    <div>
+        <h3 class="section-heading"><span>Popular Spotless Services</span></h3>
+    </div>
+    <mat-grid-list cols="6" gutterSize="10" rowHeight="480px">
+        <mat-grid-tile></mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card class="services-card" (click)="gotoService('indoor')">
+                <img mat-card-image src="assets/img/services/ser1.jpg">
+                <mat-card-content>
+                    <mat-card-title class="card-title">Spotless <span>Home</span></mat-card-title>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card class="services-card" (click)="gotoService('outdoor')">
+                <img mat-card-image src="assets/img/services/ser4.jpg">
+                <mat-card-content>
+                    <mat-card-title class="card-title">Spotless <span>Garden</span></mat-card-title>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card class="services-card" (click)="openComingSoonComponent()">
+                <img mat-card-image src="assets/img/services/ser2.jpg">
+                <mat-card-content>
+                    <mat-card-title class="card-title">Spotless <span>Connect</span></mat-card-title>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card class="services-card" (click)="openComingSoonComponent()">
+                <img mat-card-image src="assets/img/services/ser3.jpg">
+                <mat-card-content>
+                    <mat-card-title class="card-title">Spotless <span>Business</span></mat-card-title>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile></mat-grid-tile>
+    </mat-grid-list>
+
 </div>

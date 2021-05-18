@@ -3,6 +3,7 @@ import { Observable, of, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Category, Product, Brand} from '../../_shared/interfaces';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +21,14 @@ export class UtilitiesService {
   productDetails$ = this.productSource.asObservable();
 
  
-  constructor() { }
+  constructor(
+    private _snackBar: MatSnackBar,
+  ) { }
 
 
+  openSnackBar(str) {
+    this._snackBar.open(str,'close');
+  }
 
   //=======================UPDATE PRODUCT DETAILS========================================
 

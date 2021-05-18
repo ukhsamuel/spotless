@@ -1,0 +1,203 @@
+<div>
+    <!-- <mat-grid-list cols="6" gutterSize="10" rowHeight="840px"> -->
+    <mat-grid-list  gutterSize="10" #grid [cols]="cols" rowHeight="840px">
+        <form [formGroup]="bookingForm" class="needs-validation" novalidate>
+            <mat-grid-tile [colspan]="span1">
+                <div class="book-form-container task-container">
+                    
+                    <mat-tab-group [disableRipple]=true>
+                    <mat-tab label="Indoor"> 
+                        <div class="tab-wrapper">
+                            <h5>Book trusted, reliable home cleaners</h5>
+                            <h3>About Your Clean</h3>
+
+                            <div class='internalMatGrid'>
+                                <mat-grid-list cols="2" rowHeight="100px">
+                                    <mat-grid-tile>
+                                        <div class="select-container">
+                                            <h4>Number of Bedrooms</h4>
+                                            <mat-form-field  class="select-border">
+                                                <mat-select formControlName="bedrooms">
+                                                    <mat-option value="0">0 Bedrooms</mat-option>
+                                                    <mat-option value="1">1 Bedroom</mat-option>
+                                                    <mat-option value="2">2 Bedrooms</mat-option>
+                                                    <mat-option value="3">3 Bedrooms</mat-option>
+                                                    <mat-option value="4">4 Bedrooms</mat-option>
+                                                    <mat-option value="5">5 Bedrooms</mat-option>
+                                                </mat-select>
+                                            </mat-form-field>     
+                                        </div>   
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <div class="select-container">
+                                            <h4>Number of Bathrooms</h4>
+                                            <mat-form-field  class="select-border">
+                                                <mat-select formControlName="bathrooms">
+                                                    <mat-option value="1">1 Bathroom</mat-option>
+                                                    <mat-option value="2">2 Bathrooms</mat-option>
+                                                    <mat-option value="3">3 Bathrooms</mat-option>
+                                                    <mat-option value="4">4 Bathrooms</mat-option>
+                                                    <mat-option value="5">5 Bathrooms</mat-option>
+                                                </mat-select>
+                                            </mat-form-field>     
+                                        </div>                                      
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                            </div>
+                            <div>
+                                <h4>Extras</h4>
+                                <h5>Select your extra tasks below</h5>
+
+                                <div class='internalMatGrid'>
+                                    <mat-grid-list [cols]="taskCols" rowHeight="200px">
+                                        <mat-grid-tile  (click)="chooseService(service)" *ngFor="let service of indoorServices">  
+                                            <div class="service" [ngClass]="{'selected-service': isServiceChosen(service.id)}">
+                                                <div class="service-icon-container">
+                                                    <mat-icon class="service-icon">{{service.icon}}</mat-icon>
+                                                </div>
+                                                <p>{{service.name}}</p>
+                                            </div>                           
+                                        </mat-grid-tile>
+                                    </mat-grid-list>
+                                </div> 
+                            </div> 
+                            <div>
+                                <h4>Extras</h4>
+                                
+                                <mat-form-field class="select-border">
+                                    <mat-label>Choose a date</mat-label>
+                                    <input matInput [matDatepicker]="picker" formControlName="date">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Outdoor">
+                        <div class="tab-wrapper">
+                            <h5>Clean your garden, windows, pool & car</h5>
+
+                            <div>
+                                <h4>Select Tasks</h4>
+                                <h5>What would you like your cleaner to do?</h5>
+
+
+                                <div class='internalMatGrid'>
+                                    <mat-grid-list cols="5" rowHeight="200px">
+                                        <mat-grid-tile  *ngFor="let service of outsideServices">  
+                                            <div class="service" (click)="chooseService(service)" [ngClass]="{'selected-service': isServiceChosen(service.id)}">
+                                                <div class="service-icon-container">
+                                                    <mat-icon class="service-icon">{{service.icon}}</mat-icon>
+                                                </div>
+                                                <p>{{service.name}}</p>
+                                            </div>                           
+                                        </mat-grid-tile>
+                                    </mat-grid-list>
+                                </div> 
+                            </div>
+                            <div>
+                                <h4>How Long</h4>
+                                <h5>For how many hours would you like to book your cleaner to do this work?</h5>
+                                <mat-slider formControlName="outdoorHours" min="1" max="10" step="0.5" value="3"></mat-slider>
+                            </div> 
+                            <!-- <div>
+                                <h4>Extras</h4>
+                                
+                                <mat-form-field class="select-border">
+                                    <mat-label>Choose a date</mat-label>
+                                    <input matInput [matDatepicker]="picker2">
+                                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker2></mat-datepicker>
+                                </mat-form-field>
+                            </div> -->
+                            </div>
+                    </mat-tab>
+                    </mat-tab-group>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="span2">
+                <div>
+                    <div *ngIf="bookingStage == 1" class="book-form-container summary-section">
+                        <div>
+                            <p class="summ-txt-2">{{returnServiceHours()}} Hours</p>
+                        </div>
+                        <div class="summ-section">
+                            <p class="summ-txt-1">When</p>
+                            <p class="summ-txt-2">{{this.orderInformation.date | date}}</p>
+                        </div>
+                        <div class="summ-section">
+                            <p class="summ-txt-1">Rooms</p>
+                            <p class="summ-txt-2">{{bookingData.bedrooms}} Bedrooms, {{bookingData.bathrooms}} Bathroom</p>
+                        </div>
+                        <div class="summ-section" *ngIf="selectedService.length > 0">
+                            <p class="summ-txt-1">Extras</p>
+                            <p class="summ-txt-2"><span  *ngFor="let service of selectedService">{{service.name}}, </span></p>
+                        </div>
+                        <hr>
+                        <div class="summ-section">
+                            <p class="summ-txt-1">Service Charge</p>
+                            <p class="summ-txt-2">${{serviceCharge}}</p>
+                        </div>
+                        <hr>
+                        <div class="summ-section">
+                            <p class="summ-txt-1">Total</p>
+                            <p class="summ-txt-2">${{calculateTotal()}}</p>
+                        </div>
+                        <div class="summ-section">
+                            <button class="btn-submit" mat-raised-button color="primary" (click)="bookingStage=2">Finish Booking</button>
+                        </div>
+                    </div>
+                    <div *ngIf="bookingStage == 2" class="book-form-container summary-section">
+                        <div class="summ-section">
+                            <p class="summ-txt-1">When</p>
+                            <p class="summ-txt-2">{{this.orderInformation.date | date}}</p>
+                        </div>
+                        <hr>
+                        <div class="summ-section">
+                            <p class="summ-txt-1">Service Charge</p>
+                            <p class="summ-txt-2">${{serviceCharge}}</p>
+                        </div>
+                        <hr>
+                        <div class="summ-section">
+                            <p class="summ-txt-1">Total</p>
+                            <p class="summ-txt-2">${{calculateTotal()}}</p>
+                        </div>
+                        <hr>
+                        <div>
+                            <div class="form-group">
+                                <input formControlName="address" name="address" class="form-control" type="text" placeholder="Delivery Address" required>
+                                <div class="invalid-feedback" *ngIf="submitted && !orderInformation.address">Please provide delivery address.</div>
+                            </div>
+                            <div class="form-group">
+                                <input formControlName="phone" name="phone" class="form-control" type="text" placeholder="Contact Number" required>
+                                <div class="invalid-feedback" *ngIf="submitted && !orderInformation.phone">Please provide phone.</div>
+                            </div>
+                            <div class="form-group">
+                                <input formControlName="email" name="email" class="form-control" type="text" placeholder="Contact Email" required>
+                                <div class="invalid-feedback" *ngIf="submitted && !orderInformation.email">Please provide email.</div>
+                            </div>
+                        </div>
+                        <button mat-raised-button color="warn" (click)="getPairedWorker()">Get </button>
+                    </div>
+                    <div *ngIf="bookingStage == 3" class="book-form-container summary-section">
+                        <div class="worker-card-section" *ngIf="pairedWorker">
+                            <h4 class="title-1">Your Spotstar</h4>
+                            <div class="worker-card">
+                                <img [src]="pairedWorker.photo">
+                                <h3>{{pairedWorker.name}}</h3>
+                                <p>{{pairedWorker.description}}</p>
+                            </div>
+                        </div>
+                        <button mat-raised-button color="warn" (click)="submitOrder()">Submit</button>
+                    </div>
+                    <div class="book-form-container promise-section">
+                        <h2 class="title-1">Spotstar Promise</h2>
+                        <p>We want to ensure that you are 100% happy and satisfied with our service. If you are unhappy in any way, our support team is on standby ready to help.</p>
+                    </div>
+                </div>
+            </mat-grid-tile>
+        </form>
+    </mat-grid-list>
+</div>
+<!-- (click)="showSummary=true" -->
+<!-- <button mat-raised-button color="warn" (click)="submitOrder()">Finish Booking</button> -->

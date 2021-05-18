@@ -4,20 +4,22 @@ import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
 import { PublicRoutes } from './public-routing.module';
 import {SharedModule} from '../_shared/shared.module';
-import { ViewProductComponent } from './view-product/view-product.component';
-import { ViewCartComponent } from './view-cart/view-cart.component';
-import { ViewCategoryComponent } from './view-category/view-category.component';
 import { LoginComponent } from './login/login.component';
 import {MaterialModule} from '../material/material.module';
-
-
+import { BookComponent } from './book/book.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [HomeComponent, ViewProductComponent, ViewCartComponent, ViewCategoryComponent, LoginComponent],
+  declarations: [
+    HomeComponent, 
+    LoginComponent, BookComponent
+  ],
   imports: [
     RouterModule.forChild(PublicRoutes),
     CommonModule,
     SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
     MaterialModule
   ]
 })
