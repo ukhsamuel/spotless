@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
@@ -6,8 +6,8 @@ import * as _moment from 'moment';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-
 import { TasksService, UtilitiesService } from '../../core/services';
+import { Subscription } from 'rxjs';
 
 const moment =  _moment;
 
@@ -99,6 +99,7 @@ export class BookComponent implements OnInit {
     xs: 2
   }
   submitted: boolean;
+  taskSub$ : Subscription;
 
   constructor(
     private tasksService: TasksService,
@@ -168,16 +169,15 @@ export class BookComponent implements OnInit {
   
   loadTasks(){
 
-    this.tasksService.getTasks$()
-    .toPromise().then(
-      (result: any) => {
-        // this.products = result;
-        this.indoorServices =  result.data.filter(function (el) {return el.type == '1' })
-        this.outsideServices =  result.data.filter(function (el) {return el.type == '2' })
-        console.log(this.indoorServices)
+    this.taskSub$ = this.tasksService.getTasks$().pipe().subscribe((result:any) => {
+      console.log(result) // whenever data returns do something with it
+      this.indoorServices =  result.data.filter(function (el) {return el.type == '1' })
+      this.outsideServices =  result.data.filter(function (el) {return el.type == '2' })
+      console.log(this.indoorServices)
+    })
 
-      })
   }
+
 
   getPairedWorker(){
     this.tasksService.getPairedWorker$()
@@ -202,15 +202,6 @@ export class BookComponent implements OnInit {
     console.log(this.selectedService)
   }
 
-  // public removeFromCart(productId){
-  //   var newCartItems = this.cartItems.filter(function (el) {
-  //     return el.productId !== productId
-  //   })
-  //   this.cartItems = newCartItems;
-  //   this.updateCartDetails(this.cartItems);
-    
-  //   console.log(newCartItems)
-  // }
   isServiceChosen(id){
     var index = this.selectedService.findIndex(x => x.id === id);
     return index > -1?true:false;
@@ -223,17 +214,16 @@ export class BookComponent implements OnInit {
       return tot + parseInt(arr.duration);
     },0)
 
-    // console.log(this.selectedService)
     // calculate rooms cleaning time
-    let roomTime = parseInt(this.bookingData.bathrooms) + parseInt(this.bookingData.bedrooms); 
-
-    return total + this.bookingData.outdoorHours + roomTime;
+    let roomTime = +this.bookingData.bathrooms + +this.bookingData.bedrooms; 
+    let outdoorHours = this.bookingForm.get('outdoorHours').value;;
+    return total + this.bookingData.outdoorHours + roomTime + outdoorHours;
   }
 
   calculateTotal(){
     let total = 0;
-    let bedrooms = JSON.parse(this.bookingData.bedrooms);
-    let bathrooms = JSON.parse(this.bookingData.bathrooms);
+    let bedrooms = +this.bookingData.bedrooms;
+    let bathrooms = +this.bookingData.bathrooms;
     total = ((20 * bedrooms) + (10 * bathrooms) + (10 * this.selectedService.length));
     return total + this.serviceCharge;
   }
@@ -310,5 +300,9 @@ export class BookComponent implements OnInit {
       outdoorHours:0,
       date: ''
     }
+  }
+
+  ngOnDestroy():void{
+    this.taskSub$.unsubscribe();
   }
 }
